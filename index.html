@@ -1,116 +1,434 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>I'm Sorry ❤️</title>
-
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Ponnah — Please Forgive Me ❤️</title>
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background: linear-gradient(135deg, #ff758c, #ff7eb3);
-        height: 100vh;
-        font-family: "Arial", sans-serif;
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-    }
+  :root{
+    --bg1: #fff0f4;
+    --bg2: #ffe6f0;
+    --card: rgba(255,255,255,0.10);
+    --accent: #ff4d7e;
+    --muted: #fff6f9;
+    --soft-shadow: 0 12px 45px rgba(3,6,12,0.16);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;color:#2b2b2b}
+  body{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:28px;
+    background: radial-gradient(1000px 400px at 10% 10%, rgba(255,230,243,0.6), transparent 10%),
+                radial-gradient(800px 300px at 95% 90%, rgba(255,240,245,0.6), transparent 10%),
+                linear-gradient(135deg,var(--bg1),var(--bg2));
+  }
 
-    .message-box {
-        position: absolute;
-        z-index: 10;
-        opacity: 0;
-        animation: fadeIn 2s ease forwards;
-    }
+  .card{
+    width:100%;
+    max-width:980px;
+    border-radius:18px;
+    padding:28px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.85));
+    box-shadow: var(--soft-shadow);
+    display:grid;
+    grid-template-columns: 320px 1fr;
+    gap:22px;
+    align-items:center;
+    overflow:hidden;
+  }
 
-    h1 {
-        font-size: 60px;
-        margin-bottom: 10px;
-        text-shadow: 0 0 20px #ffebf0;
-        animation: glow 2s infinite alternate;
-    }
+  /* Left - cat */
+  .cat-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:16px;
+    padding:8px;
+  }
 
-    p {
-        font-size: 22px;
-        margin-top: 0;
-        opacity: 0;
-        animation: fadeInText 3s ease forwards 1s;
-    }
+  .cat-scene{
+    width:100%;
+    max-width:300px;
+    height:300px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+  }
 
-    /* Floating hearts */
-    .heart {
-        position: absolute;
-        color: #fff;
-        animation: floatUp 6s linear infinite;
-        opacity: 0.7;
-    }
+  /* speech bubble */
+  .bubble{
+    position:absolute;
+    top:12px;
+    right:14px;
+    background: linear-gradient(180deg,#fff9fb,#fff2f7);
+    padding:10px 14px;
+    border-radius:14px;
+    font-weight:600;
+    color: #ff3b78;
+    box-shadow: 0 6px 18px rgba(3,6,12,0.08);
+    transform-origin: right top;
+    animation: floatBubble 3.6s ease-in-out infinite;
+  }
+  @keyframes floatBubble{
+    0%,100%{ transform: translateY(0) }
+    50%{ transform: translateY(-6px) }
+  }
 
-    @keyframes floatUp {
-        0% {
-            transform: translateY(100vh) scale(0.8);
-            opacity: 0;
-        }
-        50% {
-            opacity: 1;
-        }
-        100% {
-            transform: translateY(-20vh) scale(1.4);
-            opacity: 0;
-        }
-    }
+  /* Cat SVG container */
+  .cat {
+    width:240px;
+    height:240px;
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.12));
+  }
 
-    /* Message fade-in */
-    @keyframes fadeIn {
-        to {
-            opacity: 1;
-        }
-    }
+  /* paw raise animation */
+  .paw {
+    transform-origin: 50% 20%;
+    animation: pawUp 1.6s ease-in-out infinite;
+  }
+  @keyframes pawUp {
+    0% { transform: translateY(0) rotate(0deg); }
+    30% { transform: translateY(-18px) rotate(-8deg); }
+    60% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+  }
 
-    @keyframes fadeInText {
-        to {
-            opacity: 1;
-        }
-    }
+  /* eyes blink */
+  .eye {
+    transform-origin: center;
+    animation: blink 4.2s linear infinite;
+  }
+  @keyframes blink {
+    0%, 96% { transform: scaleY(1); }
+    98% { transform: scaleY(0.07); }
+    100% { transform: scaleY(1); }
+  }
 
-    /* Glow effect */
-    @keyframes glow {
-        from {
-            text-shadow: 0 0 10px #fff;
-        }
-        to {
-            text-shadow: 0 0 25px #fff, 0 0 40px #ffd6dd;
-        }
-    }
+  /* head tilt on forgive */
+  .cat.tilt .head {
+    animation: headTilt 0.9s ease forwards;
+  }
+  @keyframes headTilt {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(-8deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+  /* Right - message */
+  .content{
+    padding:6px 8px;
+  }
+  h1{
+    margin:0 0 6px 0;
+    font-size:28px;
+    color:#222;
+  }
+  .intro {
+    margin:0 0 12px 0;
+    color:#6b6b6b;
+    font-size:14px;
+  }
+
+  .message-box{
+    background: linear-gradient(180deg, rgba(255,250,252,0.9), rgba(255,245,249,0.9));
+    padding:18px;
+    border-radius:12px;
+    box-shadow: 0 8px 30px rgba(3,6,12,0.05);
+    min-height:260px;
+    max-height:420px;
+    overflow:auto;
+    font-size:16px;
+    color:#222;
+    line-height:1.55;
+  }
+
+  .line {
+    opacity:0;
+    transform: translateY(6px);
+    transition: all 320ms cubic-bezier(.2,.9,.2,1);
+    white-space:pre-wrap;
+  }
+  .line.show {
+    opacity:1;
+    transform: translateY(0);
+  }
+
+  .controls{
+    margin-top:14px;
+    display:flex;
+    gap:10px;
+    align-items:center;
+  }
+  .btn {
+    border:0;
+    padding:10px 14px;
+    border-radius:10px;
+    background: linear-gradient(90deg, #ff5a8c, #ff7aa3);
+    color:white;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow: 0 10px 30px rgba(255,90,140,0.12);
+  }
+  .btn.ghost {
+    background:transparent;
+    color:#6b6b6b;
+    box-shadow:none;
+    border:1px solid rgba(100,100,100,0.06);
+  }
+
+  /* heart burst */
+  .heart {
+    position:fixed;
+    pointer-events:none;
+    font-size:18px;
+    filter: drop-shadow(0 8px 20px rgba(255,77,126,0.14));
+  }
+
+  /* responsive */
+  @media (max-width:860px){
+    .card{ grid-template-columns: 1fr; padding:18px; gap:14px; }
+    .cat-scene{ height:220px }
+  }
 </style>
 </head>
-
 <body>
-    <div class="message-box">
-        <h1>I'm Really Sorry ❤️</h1>
-        <p>
-            I never meant to hurt you.<br />
-            You mean everything to me. Please forgive me.
-        </p>
+  <div class="card" role="main" aria-live="polite">
+    <div class="cat-wrap" aria-hidden="false">
+      <div class="cat-scene">
+        <div class="bubble">Please... forgive me</div>
+        <!-- Inline cute cat SVG -->
+        <svg class="cat" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- body -->
+          <g id="catRoot" transform="translate(20,16)">
+            <g class="body">
+              <ellipse cx="100" cy="140" rx="72" ry="54" fill="#fff6fb" />
+            </g>
+            <!-- tail -->
+            <path d="M170 160 q18 -6 26 -24" stroke="#ffeef7" stroke-width="12" stroke-linecap="round" fill="none" opacity="0.95"/>
+            <!-- head group -->
+            <g class="head" transform="translate(40,14)">
+              <circle cx="80" cy="60" r="54" fill="#fff7fb" stroke="#ffdfe8" stroke-width="2"/>
+              <!-- left ear -->
+              <path d="M43 26 l-18 -26 l-6 30 z" fill="#fff7fb" stroke="#ffdfe8" stroke-width="2" />
+              <!-- right ear -->
+              <path d="M119 26 l18 -26 l6 30 z" fill="#fff7fb" stroke="#ffdfe8" stroke-width="2" />
+              <!-- eyes -->
+              <g transform="translate(48,46)">
+                <ellipse class="eye" cx="10" cy="6" rx="10" ry="6" fill="#2b2b2b"/>
+                <ellipse class="eye" cx="54" cy="6" rx="10" ry="6" fill="#2b2b2b"/>
+                <!-- eye shine -->
+                <circle cx="8" cy="4" r="2" fill="#fff" opacity="0.9"/>
+                <circle cx="52" cy="4" r="2" fill="#fff" opacity="0.9"/>
+              </g>
+              <!-- nose -->
+              <path d="M88 84 q-6 6 -12 0" stroke="#ff8aa8" stroke-width="3" stroke-linecap="round" fill="none"/>
+              <!-- mouth -->
+              <path d="M76 88 q8 8 16 0" stroke="#ff8aa8" stroke-width="2" stroke-linecap="round" fill="none" />
+            </g>
+
+            <!-- left paw (static) -->
+            <g transform="translate(50,160)">
+              <ellipse cx="0" cy="0" rx="16" ry="10" fill="#fff7fb" stroke="#ffdfe8" />
+            </g>
+
+            <!-- begging paw (animated) -->
+            <g class="paw" transform="translate(120,148)">
+              <ellipse cx="0" cy="0" rx="18" ry="12" fill="#fff7fb" stroke="#ffdfe8"/>
+            </g>
+
+          </g>
+        </svg>
+      </div>
+
+      <div style="font-size:13px;color:#6b6b6b;">A small, humble heart asking for another chance</div>
     </div>
 
-    <!-- Floating hearts generator -->
-    <script>
-        function createHeart() {
-            const heart = document.createElement("div");
-            heart.classList.add("heart");
-            heart.innerHTML = "❤️";
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.fontSize = 20 + Math.random() * 40 + "px";
-            heart.style.animationDuration = 4 + Math.random() * 4 + "s";
-            document.body.appendChild(heart);
+    <div class="content">
+      <h1>Ponnah — I am so sorry</h1>
+      <div class="intro">I wrote this from the deepest part of my heart. Please read slowly.</div>
 
-            setTimeout(() => heart.remove(), 7000);
+      <div class="message-box" id="messageBox" tabindex="0" aria-label="Apology message">
+        <!-- We'll insert each paragraph as .line -->
+      </div>
+
+      <div class="controls">
+        <button class="btn" id="forgiveBtn">Forgive me</button>
+        <button class="btn ghost" id="replayBtn">Replay</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // exact message paragraphs (keeps spacing like you provided)
+  const paragraphs = [
+`Ponnah…
+I’m really sorry… truly, deeply, painfully sorry.`,
+
+`I never wanted to become the reason you feel uncomfortable —
+not on a call, not in person, not ever.
+You should have always felt safe with me…
+but instead, my words made you feel judged.
+And I hate myself for that.`,
+
+`You are the one person I want to protect,
+not hurt.
+The one person I want to lift up,
+not make insecure.
+The one person whose comfort means more to me
+than my own feelings.`,
+
+`Every time I said something about your looks,
+I never meant to make you feel less.
+You are already enough…
+more than enough.
+And I should have told you that
+instead of letting stupid words slip out.`,
+
+`Ponnah…
+you deserve love that makes you feel beautiful,
+respected, valued, and seen.
+I promise I will learn.
+I promise I will change.
+I promise I will speak with care,
+with love,
+with gentleness.`,
+
+`I don’t want to lose the warmth of your voice,
+the comfort of your presence,
+the softness of your heart.`,
+
+`Please forgive me…
+not because I deserve it,
+but because I truly want to become a better man for you.
+For us.
+For the love I never want to lose. ❤️`
+  ];
+
+  const box = document.getElementById('messageBox');
+
+  // create line elements
+  function setupLines(){
+    box.innerHTML = '';
+    paragraphs.forEach((p, i) => {
+      const div = document.createElement('div');
+      div.className = 'line';
+      // preserve original line breaks
+      div.textContent = p;
+      box.appendChild(div);
+    });
+  }
+
+  // show lines one-by-one with gentle reveal
+  async function revealLines(delay=700){
+    const nodes = Array.from(box.querySelectorAll('.line'));
+    for(let i=0;i<nodes.length;i++){
+      // slight typing effect per small chunk
+      await revealText(nodes[i], 18);
+      nodes[i].classList.add('show');
+      await new Promise(r=>setTimeout(r, delay));
+      // small auto-scroll
+      box.scrollTop = nodes[i].offsetTop - 12;
+    }
+  }
+
+  // reveal text by gradually increasing opacity in small char batches (simple simulation)
+  function revealText(el, speed){
+    return new Promise(resolve=>{
+      el.style.opacity = 0;
+      el.style.transform = 'translateY(6px)';
+      // we'll animate by showing then resolving quickly for natural feel
+      setTimeout(()=>{
+        el.style.transition = 'all 420ms cubic-bezier(.2,.9,.2,1)';
+        el.style.opacity = 1;
+        el.style.transform = 'translateY(0)';
+      }, 40);
+      // allow time proportional to text length
+      const wait = Math.min(1200 + el.textContent.length * speed, 3600);
+      setTimeout(resolve, wait);
+    });
+  }
+
+  // spawn heart burst around an (x,y)
+  function burstHearts(x,y,count=12){
+    for(let i=0;i<count;i++){
+      const h = document.createElement('div');
+      h.className = 'heart';
+      h.textContent = '❤';
+      document.body.appendChild(h);
+      const angle = Math.PI*2*Math.random();
+      const dist = 40 + Math.random()*90;
+      const size = 12 + Math.random()*18;
+      h.style.left = (x - size/2) + 'px';
+      h.style.top = (y - size/2) + 'px';
+      h.style.fontSize = size + 'px';
+      h.style.opacity = '1';
+      const vx = Math.cos(angle)*dist;
+      const vy = Math.sin(angle)*dist - 30;
+      const rot = (Math.random()-0.5)*720;
+      const dur = 700 + Math.random()*800;
+      const start = performance.now();
+      (function animate(t0){
+        function frame(t){
+          const p = Math.min(1, (t - t0)/dur);
+          h.style.transform = `translate(${vx*p}px, ${vy*p + p*p*30}px) rotate(${rot*p}deg) scale(${1 - 0.25*p})`;
+          h.style.opacity = String(1 - p);
+          if(p<1) requestAnimationFrame(frame);
+          else h.remove();
         }
+        requestAnimationFrame(frame);
+      })(start);
+    }
+  }
 
-        setInterval(createHeart, 300);
-    </script>
+  // trigger cat tilt animation
+  function catTilt(){
+    const cat = document.querySelector('.cat');
+    cat.classList.add('tilt');
+    setTimeout(()=> cat.classList.remove('tilt'), 950);
+  }
+
+  // main init
+  function startSequence(){
+    setupLines();
+    revealLines(500);
+  }
+
+  // forgive button behavior
+  const forgiveBtn = document.getElementById('forgiveBtn');
+  forgiveBtn.addEventListener('click', (e)=>{
+    const rect = forgiveBtn.getBoundingClientRect();
+    const cx = rect.left + rect.width/2;
+    const cy = rect.top + rect.height/2;
+    burstHearts(cx, cy, 18);
+    catTilt();
+    // replay the reveal from start after small pause
+    setTimeout(()=>{
+      setupLines();
+      revealLines(350);
+    }, 900);
+  });
+
+  // replay button
+  const replayBtn = document.getElementById('replayBtn');
+  replayBtn.addEventListener('click', ()=>{
+    setupLines();
+    revealLines(400);
+  });
+
+  // initial
+  window.addEventListener('load', ()=>{
+    startSequence();
+    // gentle auto-heart occasionally
+    setInterval(()=> {
+      const vw = window.innerWidth;
+      const x = 80 + Math.random() * (vw - 240);
+      const y = window.innerHeight - 40;
+      burstHearts(x, y, 6);
+    }, 2800);
+  });
+</script>
 </body>
 </html>
