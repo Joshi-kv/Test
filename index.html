@@ -1,115 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scrolling Animated Message with Emojis</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      font-family: 'Poppins', sans-serif;
-      color: #fff;
-      overflow: hidden;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scrolling Message</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
 
-    .scroll-container {
-      width: 90%;
-      max-width: 400px;
-      height: 80vh;
-      overflow: hidden;
-      position: relative;
-      border-radius: 25px;
-      background: rgba(0,0,0,0.25);
-      padding: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-    }
+  .scroll-container {
+    width: 90%;
+    max-width: 400px;
+    height: 80vh;
+    overflow-y: auto;
+    background: rgba(0,0,0,0.25);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  }
 
-    .scroll-content {
-      position: absolute;
-      width: 100%;
-      animation: scrollUp 50s linear infinite;
-    }
+  .line {
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
 
-    .line {
-      font-size: 1.05rem;
-      line-height: 1.6;
-      margin-bottom: 20px;
-      text-align: center;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    }
+  .heart {
+    color: #ff4d6d;
+    display: inline-block;
+    animation: heartbeat 1s infinite;
+  }
 
-    /* Heartbeat emoji */
-    .heart {
-      color: #ff4d6d;
-      display: inline-block;
-      animation: heartbeat 1s infinite;
-    }
+  .sparkle {
+    color: #fffacd;
+    display: inline-block;
+    animation: bounce 2s infinite;
+  }
 
-    /* Bounce emoji */
-    .sparkle {
-      color: #fffacd;
-      display: inline-block;
-      animation: bounce 2s infinite;
-    }
+  .flower {
+    color: #ffb6c1;
+    display: inline-block;
+    animation: glow 1.5s infinite alternate;
+  }
 
-    /* Glow emoji */
-    .flower {
-      color: #ffb6c1;
-      display: inline-block;
-      animation: glow 1.5s infinite alternate;
-    }
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.3); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.2); }
+  }
 
-    @keyframes scrollUp {
-      0% { transform: translateY(100%); }
-      100% { transform: translateY(-100%); }
-    }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
 
-    @keyframes heartbeat {
-      0%, 100% { transform: scale(1); }
-      25% { transform: scale(1.3); }
-      50% { transform: scale(1); }
-      75% { transform: scale(1.2); }
-    }
+  @keyframes glow {
+    0% { text-shadow: 0 0 5px #ffb6c1; }
+    100% { text-shadow: 0 0 15px #ffb6c1; }
+  }
 
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    @keyframes glow {
-      0% { text-shadow: 0 0 5px #ffb6c1; }
-      100% { text-shadow: 0 0 20px #ffb6c1; }
-    }
-
-  </style>
+</style>
 </head>
 <body>
   <div class="scroll-container">
-    <div class="scroll-content">
-      <p class="line">Ponnah… <span class="heart">❤️</span></p>
-      <p class="line">I’m really sorry… truly, deeply, painfully sorry. <span class="sparkle">✨</span></p>
-      <p class="line">I never wanted to become the reason you feel uncomfortable —</p>
-      <p class="line">not on a call, not in person, not ever. <span class="flower">🌸</span></p>
-      <p class="line">You should have always felt safe with me…</p>
-      <p class="line">but instead, my words made you feel judged. <span class="sparkle">✨</span></p>
-      <p class="line">And I hate myself for that.</p>
-      <p class="line">You are the one person I want to protect, not hurt. <span class="heart">❤️</span></p>
-      <p class="line">The one person I want to lift up, not make insecure. <span class="flower">🌸</span></p>
-      <p class="line">The one person whose comfort means more to me than my own feelings.</p>
-      <p class="line">Every time I said something about your looks, I never meant to make you feel less. <span class="sparkle">✨</span></p>
-      <p class="line">You are already enough… more than enough. <span class="heart">❤️</span></p>
-      <p class="line">And I should have told you that instead of letting stupid words slip out.</p>
-      <p class="line">Ponnah… you deserve love that makes you feel beautiful, respected, valued, and seen. <span class="flower">🌸</span></p>
-      <p class="line">I promise I will learn. I promise I will change. <span class="sparkle">✨</span></p>
-      <p class="line">I promise I will speak with care, with love, with gentleness. <span class="heart">❤️</span></p>
-      <p class="line">Please forgive me… not because I deserve it, but because I truly want to become a better man for you. <span class="heart">❤️</span></p>
-    </div>
+    <p class="line">Ponnah… <span class="heart">❤️</span></p>
+    <p class="line">I’m really sorry… truly, deeply, painfully sorry. <span class="sparkle">✨</span></p>
+    <p class="line">I never wanted to become the reason you feel uncomfortable —</p>
+    <p class="line">not on a call, not in person, not ever. <span class="flower">🌸</span></p>
+    <p class="line">You should have always felt safe with me…</p>
+    <p class="line">but instead, my words made you feel judged. <span class="sparkle">✨</span></p>
+    <p class="line">And I hate myself for that.</p>
+    <p class="line">You are the one person I want to protect, not hurt. <span class="heart">❤️</span></p>
+    <p class="line">The one person I want to lift up, not make insecure. <span class="flower">🌸</span></p>
+    <p class="line">The one person whose comfort means more to me than my own feelings.</p>
+    <p class="line">Every time I said something about your looks, I never meant to make you feel less. <span class="sparkle">✨</span></p>
+    <p class="line">You are already enough… more than enough. <span class="heart">❤️</span></p>
+    <p class="line">And I should have told you that instead of letting stupid words slip out.</p>
+    <p class="line">Ponnah… you deserve love that makes you feel beautiful, respected, valued, and seen. <span class="flower">🌸</span></p>
+    <p class="line">I promise I will learn. I promise I will change. <span class="sparkle">✨</span></p>
+    <p class="line">I promise I will speak with care, with love, with gentleness. <span class="heart">❤️</span></p>
+    <p class="line">Please forgive me… not because I deserve it, but because I truly want to become a better man for you. <span class="heart">❤️</span></p>
   </div>
 </body>
 </html>
